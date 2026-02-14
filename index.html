@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Downloader (Hendra Project)</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #0070f3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #0051a2;
+        }
+        .note {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>YouTube to MP4</h2>
+        <p>Masukkan URL Video YouTube di bawah ini:</p>
+        
+        <input type="text" id="urlInput" placeholder="https://www.youtube.com/watch?v=..." required>
+        <br>
+        <button onclick="downloadVideo()">Download MP4</button>
+        
+        <p class="note">Catatan: Jika gagal, berarti YouTube memblokir IP Server Vercel saat ini.</p>
+    </div>
+
+    <script>
+        function downloadVideo() {
+            const url = document.getElementById('urlInput').value;
+            if (!url) {
+                alert("Harap masukkan URL!");
+                return;
+            }
+            
+            // Arahkan browser ke endpoint API kita
+            // Ini akan memicu download otomatis jika berhasil
+            window.location.href = `/api/download?url=${encodeURIComponent(url)}`;
+        }
+    </script>
+</body>
+</html>
